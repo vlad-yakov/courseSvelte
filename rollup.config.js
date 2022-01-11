@@ -4,8 +4,34 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import sveltePreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
+
+const preprocess = sveltePreprocess({
+	scss: {
+
+		data: `
+		import '../scss/global.scss';
+        import '../scss/buttons.scss';
+        import '../scss/page.scss';
+        `,
+	},
+
+	postcss: {
+		plugins: [require('autoprefixer')],
+	},
+});
+
+plugins: [
+	svelte({
+		dev: !production,
+		css: css => {
+			css.write('public/build/bundle.css');
+		},
+		preprocess,
+	}),
+]
 
 function serve() {
 	let server;
