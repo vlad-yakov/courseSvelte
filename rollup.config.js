@@ -5,12 +5,12 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
+import { sass } from 'svelte-preprocess-sass';
 
 const production = !process.env.ROLLUP_WATCH;
 
 const preprocess = sveltePreprocess({
 	scss: {
-
 		data: `
 		import '../scss/global.scss';
         import '../scss/buttons.scss';
@@ -29,7 +29,7 @@ plugins: [
 		css: css => {
 			css.write('public/build/bundle.css');
 		},
-		preprocess,
+		preprocess: sveltePreprocess()
 	}),
 ]
 
@@ -67,7 +67,10 @@ export default {
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
-			}
+			},
+			preprocess: {
+				style: sass(),
+			},
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
