@@ -1,20 +1,13 @@
-
 <header>
-    <div class="head">
-        <div class="bttn">
-            <button id="arrow"  on:click={menuClick} aria-expanded=false>
-                <img id="strelka" src="../arrowright.png" width="28" height="28" alt="меню" />
-            </button>
-            <button id="menu">
-                <h3>
-                    СЛЕД
-                </h3>
-            </button>
-        </div>
-       <button>
-               <img id="find" src="../search.png" width="28" height="28" alt="поиск" />
-       </button>
-    </div>
+    <button id="menu"  on:click={menuClick} aria-expanded=false>
+        <img src="../arrowright.png" width="28" height="28" alt="меню" />
+    </button>
+    <h3>
+        СЛЕД
+    </h3>
+    <button id="find" on:click={searchClick}>
+        <img src="../search.png" width="28" height="28" alt="поиск" />
+    </button>
 </header>
 
 <nav id="map" hidden>
@@ -105,7 +98,7 @@
 
 <script>
     function menuClick() {
-        let btn = document.body.querySelector('arrow');
+        let btn = document.body.querySelector('button');
         let target = document.body.querySelector('nav');
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         //инвертируем значение по клику
@@ -113,63 +106,43 @@
         target.hidden = expanded;
     }
 
+    function searchClick() {
+
+    }
 </script>
 
 <style lang="scss">
 
   header {
-    flex: 0 0 auto;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
     margin: 10px;
     background: #c7b592;
 
-    div.head {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
+    button {
+      margin: 0px;
+      padding: 8px;
+      border: none;
+      background: transparent;
+      flex: 1 1 3%;
 
-      div.bttn {
-
+      img {
+        vertical-align: middle;
       }
+    }
 
-      button {
-        margin: 0px;
-        padding: 8px;
-        border: none;
-        background: transparent;
-        flex: 0 1 2%;
-
-        img {
-
-          &#strelka {
-          vertical-align: middle;
-          margin: 0 auto;
-        }
-
-          &#find {
-            padding: 0 7px;
-            vertical-align: middle;
-          }
-      }
-
-        &#menu {
-          flex: 50% 1;
-        }
-
-        h3 {
-          font: lighter 34px "Source Sans SemiBold";
-          margin: 0px;
-          color: black;
-        }
-      }
+    h3 {
+      flex: 1 1 90%;
+      font: lighter 30px "Source Sans SemiBold";
+      margin: 0px;
+      color: black;
+      padding: 8px;
     }
   }
 
   nav {
-
-
     div {
-
       margin: 12px;
       display: flex;
       justify-content: center;
@@ -187,11 +160,9 @@
     }
   }
 
-
   main {
-    flex: 1 0 auto;
     text-align: center;
-    padding: 1em;
+    padding: 15px;
     min-height: 29.2em;
     max-width: 290px;
     margin: 0 auto;
@@ -247,12 +218,12 @@
       }
 
       .tg a {
-        font-size: 26px;
+        font-size: 24px;
 
-        :hover {
+        &:hover {
           transition: 200ms;
           color: #249bd7;
-          font-size: 30px;
+          font-size: 27px;
         }
       }
 
