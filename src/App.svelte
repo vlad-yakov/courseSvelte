@@ -10,92 +10,88 @@
     </button>
 </header>
 
-<nav id="map" hidden>
-    <div>
-        <a href="ros.svelte">худЗал</a>
-        &#47
-        <a href="bel.svelte">литЗал</a>
-        &#47
-        <a href="ukr.svelte">фотоЗал</a>
-        &#47
-        <a href="kvz.svelte">форум</a>
-    </div>
-</nav>
-
-<main>
-    <table>
-        <tr>
-            <td class="desk">
-                <h2>В ОБЩЕМ</h2>
-                <p>
-                    Искусство может передавать смыслы. Это неограниченное пространство, в
-                    котором возможно делать всё как ты сам захочешь. Как этот сайт написан на
-                    каком-то языке программирования, эта статья изначально написана на русском,
-                    так и каждый творец на своём уникальном языке передаёт важный для него
-                    смысл. Это необычное представление наших мыслей, отчего и оценка смыслов
-                    приобретает более яркий оттенок.<br>
-
-                    Смыслов в СНГ очень много, в череде которых и веками нерешённые проблемы,
-                    внутренние установки которые мы называем менталитетом, чувства которые
-                    терзают многих из нас - это только часть того хаоса, происходящего в голове
-                    выходца из бывших частей соцстраны и настоящих независимых и сильных держав.<br>
-
-                    Этот сайт для каждого может нести разные цели. Для кого-то это место чтобы
-                    проникнуться нашими национальными особенностями, некоторые здесь
-                    задумываются о чём-то более вселенском. А кто-то хочет понять как мыслят
-                    художники, какими вопросами забита их голова. Важно то, что здесь ты можешь
-                    чем-то поделиться, поэтому более не задерживаю.
-                </p>
-            </td>
-            <td class="actual">
-                <div>
-
-                </div>
-            </td>
-        </tr>
-    </table>
-
-</main>
-
-<footer>
-    <hr>
-    <div>
-        <p>
-            <abbr>
-                сд
-            </abbr><br>
-            культжурнал про искусство СНГ<br>
-            &#169 2022
-        </p>
-
+<div id="app">
+    <nav id="map" hidden>
         <div>
-            <div class="social vk">
-                <a href="https://vk.com/vlad_yakovlev28" target="_blank">
-                    <i class="fa fa-vk" aria-hidden="true" /></a
-                >
-            </div>
-            <div class="social tg">
-                <a href="https://t.me/v_yakov" target="_blank"
-                ><i class="fa fa-paper-plane " aria-hidden="true" /></a
-                >
-            </div>
-            <div class="social pinterest">
-                <a href="https://www.pinterest.ru/vladyak99/_created" target="_blank"
-                ><i class="fa fa-pinterest fa" aria-hidden="true" /></a
-                >
-            </div>
+            <a href="ros.svelte">худЗал</a>
+            &#47
+            <a href="bel.svelte">литЗал</a>
+            &#47
+            <a href="ukr.svelte">фотоЗал</a>
+            &#47
+            <a href="kvz.svelte">форум</a>
         </div>
+    </nav>
 
-        <p class="police">
-            <a href="https://docs.google.com/document/d/1fP47bg6Q3xvC3bVFVge4P3xIPsAQvAtsyUuvWh3oC9U/edit?usp=sharing"
-               target="_blank">Условия использования</a>
-            <br>
-            <a href="https://docs.google.com/document/d/1fP47bg6Q3xvC3bVFVge4P3xIPsAQvAtsyUuvWh3oC9U/edit?usp=sharing"
-               target="_blank">Для публикации</a>
-        </p>
-    </div>
-</footer>
+    <main>
+        <table>
+            <tr>
+                <td class="desk">
+                    <h2>Вводное</h2>
+                    <p>
+                        Искусство может передавать смыслы. Это неограниченное пространство, в
+                        котором возможно делать всё как ты сам захочешь. Как этот сайт написан на
+                        каком-то языке программирования, эта статья изначально написана на русском,
+                        так и каждый творец на своём уникальном языке передаёт важный для него
+                        смысл. Это необычное представление наших мыслей, отчего и оценка смыслов
+                        приобретает более яркий оттенок.<br>
 
+                        Смыслов в СНГ очень много, в череде которых и веками нерешённые проблемы,
+                        внутренние установки которые мы называем менталитетом, чувства которые
+                        терзают многих из нас - это только часть того хаоса, происходящего в голове
+                        выходца из бывших частей соцстраны и настоящих независимых и сильных держав.<br>
+
+                        Этот сайт для каждого может нести разные цели. Для кого-то это место чтобы
+                        проникнуться нашими национальными особенностями, некоторые здесь
+                        задумываются о чём-то более вселенском. А кто-то хочет понять как мыслят
+                        художники, какими вопросами забита их голова. Важно то, что здесь ты можешь
+                        чем-то поделиться, поэтому более не задерживаю.
+
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </main>
+
+    <footer>
+        <hr>
+        <div>
+            <p>
+                <abbr>
+                    сд
+                </abbr><br>
+                культжурнал про искусство СНГ<br>
+                &#169 2022
+            </p>
+
+            <div>
+                <div class="social vk">
+                    <a href="https://vk.com/vlad_yakovlev28" target="_blank">
+                        <i class="fa fa-vk" aria-hidden="true" /></a
+                    >
+                </div>
+                <div class="social tg">
+                    <a href="https://t.me/v_yakov" target="_blank"
+                    ><i class="fa fa-paper-plane " aria-hidden="true" /></a
+                    >
+                </div>
+                <div class="social pinterest">
+                    <a href="https://www.pinterest.ru/vladyak99/_created" target="_blank"
+                    ><i class="fa fa-pinterest fa" aria-hidden="true" /></a
+                    >
+                </div>
+            </div>
+
+            <p class="police">
+                <a href="https://docs.google.com/document/d/1fP47bg6Q3xvC3bVFVge4P3xIPsAQvAtsyUuvWh3oC9U/edit?usp=sharing"
+                   target="_blank">Условия использования</a>
+                <br>
+                <a href="https://docs.google.com/document/d/1fP47bg6Q3xvC3bVFVge4P3xIPsAQvAtsyUuvWh3oC9U/edit?usp=sharing"
+                   target="_blank">Для публикации</a>
+            </p>
+        </div>
+    </footer>
+</div>
 <script>
     function menuClick() {
         let btn = document.body.querySelector('button');
@@ -103,7 +99,7 @@
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
-        target.hidden = expanded;
+        target.hidden = expanded
     }
 
     function searchClick() {
@@ -114,10 +110,17 @@
 <style lang="scss">
 
   header {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 74px;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
     text-align: center;
     display: flex;
     justify-content: space-between;
-    margin: 10px;
+    border: 10px solid #fff;
     background: #c7b592;
 
     button {
@@ -129,6 +132,7 @@
 
       img {
         vertical-align: middle;
+
       }
     }
 
@@ -141,105 +145,25 @@
     }
   }
 
-  nav {
-    div {
-      margin: 12px;
-      display: flex;
-      justify-content: center;
+  div#app {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 74px;
 
-      a {
-        padding: 0 4px;
-        font: lighter 17px "Source Sans SemiBold";
-        color: black;
+    nav {
 
-        &:hover {
-          transition: 150ms;
-          color: #c7b592;
-        }
-      }
-    }
-  }
 
-  main {
-    text-align: center;
-    padding: 15px;
-    min-height: 29.2em;
-    max-width: 290px;
-    margin: 0 auto;
-
-    h2 {
-      text-transform: uppercase;
-      font-size: 3em;
-      font-weight: 100;
-    }
-  }
-
-  footer {
-    flex: 0 0 auto;
-    bottom: 0;
-    font-size: medium;
-    margin: 0px 10px 0px;
-    color: black;
-    height: 7em;
-
-    div {
-      margin: 7px;
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-
-      p {
-        margin: 5px;
-        line-height: 26px;
-      }
-
-      abbr {
-        font-size: 165%;
-        font-weight: bold;
-      }
-
-      .social a {
-        text-align: center;
-        line-height: 43px;
-        font-size: 29px;
-        width: 46px;
-        height: 46px;
-        float: left;
-        border-radius: 23px;
-        margin: 10px;
-        color: #000;
-        transition: 200ms;
-      }
-
-      .vk a:hover {
-        transition: 200ms;
-        color: #5d84ae;
-        font-size: 32px;
-      }
-
-      .tg a {
-        font-size: 24px;
-
-        &:hover {
-          transition: 200ms;
-          color: #249bd7;
-          font-size: 27px;
-        }
-      }
-
-      .pinterest a:hover {
-        transition: 200ms;
-        color: #c8232c;
-        font-size: 32px;
-      }
-
-      p.police {
-        text-align: right;
-        padding-top: 2px;
+      div {
+        padding: 5px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
 
         a {
-          line-height: 24px;
-          color: #000;
+          padding: 0 4px;
+          font: lighter 17px "Source Sans SemiBold";
+          color: black;
 
           &:hover {
             transition: 150ms;
@@ -247,8 +171,105 @@
           }
         }
       }
+    }
+
+    main {
+      font-size: 15px;
+      text-align: center;
+      padding: 15px;
+      min-height: 29.2em;
+      margin: 0;
+
+      h2 {
+        margin: 10px;
+        text-transform: uppercase;
+        font-size: 34px;
+        font-weight: 500;
+      }
+
+      p {
+        margin: 0px;
+        padding: 0px;
+      }
+    }
+
+    footer {
+      position: static;
+      flex: 0 0 auto;
+      bottom: 0;
+      font-size: 15px;
+      margin: 0px 10px 0px;
+      color: black;
+      height: 7em;
+
+      div {
+        margin: 7px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        p {
+          margin: 5px;
+          line-height: 26px;
+        }
+
+        abbr {
+          font-size: 165%;
+          font-weight: bold;
+        }
+
+        .social a {
+          text-align: center;
+          line-height: 43px;
+          font-size: 29px;
+          width: 46px;
+          height: 46px;
+          float: left;
+          border-radius: 23px;
+          margin: 10px;
+          color: #000;
+          transition: 200ms;
+        }
+
+        .vk a:hover {
+          transition: 200ms;
+          color: #5d84ae;
+          font-size: 32px;
+        }
+
+        .tg a {
+          font-size: 24px;
+
+          &:hover {
+            transition: 200ms;
+            color: #249bd7;
+            font-size: 27px;
+          }
+        }
+
+        .pinterest a:hover {
+          transition: 200ms;
+          color: #c8232c;
+          font-size: 32px;
+        }
+
+        p.police {
+          text-align: right;
+          padding-top: 2px;
+
+          a {
+            line-height: 24px;
+            color: #000;
+
+            &:hover {
+              transition: 150ms;
+              color: #c7b592;
+            }
+          }
+        }
 
 
+      }
     }
   }
 
