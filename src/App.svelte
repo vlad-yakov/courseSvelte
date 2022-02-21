@@ -11,7 +11,7 @@
 </header>
 
 <div id="app">
-    <nav id="map" hidden>
+    <nav>
         <div>
             <a href="ros.svelte">худЗал</a>
             &#47
@@ -99,7 +99,14 @@
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
-        target.hidden = expanded
+        if(!expanded) {
+            window.$('nav').slideToggle('300', 'swing');
+            target.style.display = 'block';
+            target.style.overflow = 'hidden';
+        } else {
+            target.style.overflow = 'visible';
+            window.$('nav').slideToggle('300', 'swing')
+        }
     }
 
     function searchClick() {
@@ -152,11 +159,10 @@
     top: 74px;
 
     nav {
-
+      display: none;
 
       div {
         padding: 5px;
-        box-sizing: border-box;
         display: flex;
         justify-content: center;
 
@@ -176,7 +182,7 @@
     main {
       font-size: 15px;
       text-align: center;
-      padding: 15px;
+      padding: 0 15px;
       min-height: 29.2em;
       margin: 0;
 
@@ -203,6 +209,7 @@
       height: 7em;
 
       div {
+
         margin: 7px;
         display: flex;
         flex-wrap: nowrap;
@@ -267,8 +274,6 @@
             }
           }
         }
-
-
       }
     }
   }
