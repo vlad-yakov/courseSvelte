@@ -75,7 +75,7 @@ input, button, select, textarea {
 }
 
 input:disabled {
-	color: #ccc;
+	color: #c7b592;
 }
 
 button {
@@ -95,3 +95,4 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+

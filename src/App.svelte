@@ -1,27 +1,49 @@
-<header>
-    <button id="menu"  on:click={menuClick} aria-expanded=false>
+<Drawer variant="modal" bind:open>
+    <Content>
+        <p>Найти</p>
+        <Autocomplete
+                search={searchItems}
+
+        >
+            <Text
+                    slot="loading"
+                    style="display: flex; width: 100%; justify-content: center; align-items: center;"
+            >
+                <CircularProgress style="height: 24px; width: 24px;" indeterminate />
+            </Text>
+
+        </Autocomplete>
+        <hr>
+    </Content>
+</Drawer>
+<div class="stat">
+    <header>
+    <button id="menu" on:click={menuClick} aria-expanded=false>
         <img src="../arrowright.png" width="28" height="28" alt="меню" />
     </button>
     <h3>
         СЛЕД
     </h3>
-    <button id="find" on:click={searchClick}>
+    <button id="find" on:click={SearchClick}>
         <img src="../search.png" width="28" height="28" alt="поиск" />
     </button>
+
 </header>
 
+
+<nav>
+    <div>
+        <a href="ros.svelte">худЗал</a>
+        &#47
+        <a href="bel.svelte">литЗал</a>
+        &#47
+        <a href="ukr.svelte">фотоЗал</a>
+        &#47
+        <a href="kvz.svelte">форум</a>
+    </div>
+</nav>
+</div>
 <div id="app">
-    <nav>
-        <div>
-            <a href="ros.svelte">худЗал</a>
-            &#47
-            <a href="bel.svelte">литЗал</a>
-            &#47
-            <a href="ukr.svelte">фотоЗал</a>
-            &#47
-            <a href="kvz.svelte">форум</a>
-        </div>
-    </nav>
 
     <main>
         <table>
@@ -92,38 +114,85 @@
         </div>
     </footer>
 </div>
+
 <script>
+    import Drawer, {
+        Content,
+
+    } from '@smui/drawer';
+    import Autocomplete from '@smui-extra/autocomplete';
+    import { Text } from '@smui/list';
+    import CircularProgress from '@smui/circular-progress';
+
+    let open = false;
+
+    async function searchItems(input) {
+        let counter = 0;
+        if (input === '') {
+            return [];
+        }
+
+        // Pretend to have some sort of canceling mechanism.
+        const myCounter = ++counter;
+
+        // Pretend to be loading something...
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        if (myCounter !== counter) {
+            // This means the function was called again, so we should cancel.
+            // This is how you tell Autocomplete to cancel this search. It won't
+            // replace the results of any subsequent search that has already finished.
+            return false;
+        }
+
+        // Return a list of matches.
+        return resolve.filter((item) =>
+            item.toLowerCase().includes(input.toLowerCase())
+        );
+    }
+
     function menuClick() {
         let btn = document.body.querySelector('button');
         let target = document.body.querySelector('nav');
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
+        let prime = document.body.querySelector('#app');
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
         if(!expanded) {
-            window.$('nav').slideToggle('300', 'swing');
+            window.$('nav').slideToggle(330);
             target.style.display = 'block';
             target.style.overflow = 'hidden';
+            prime.style.top = '105px';
         } else {
             target.style.overflow = 'visible';
-            window.$('nav').slideToggle('300', 'swing')
+            window.$('nav').slideToggle(330)
+            prime.style.top = '74px';
         }
     }
 
-    function searchClick() {
-
+    function SearchClick() {
+        open = open ? false : true;
+        /*
+        .show();
+        .hide()
+         */
     }
 </script>
 
 <style lang="scss">
+
+
+
+div.stat {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
 
   header {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     height: 74px;
-    width: 100%;
-    position: fixed;
-    z-index: 100;
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -152,32 +221,34 @@
     }
   }
 
+  nav {
+    display: none;
+    background: #fff;
+
+    div {
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+
+      a {
+        padding: 0 4px;
+        font: lighter 17px "Source Sans SemiBold";
+        color: black;
+
+        &:hover {
+          transition: 150ms;
+          color: #c7b592;
+        }
+      }
+    }
+  }
+}
   div#app {
     margin: 0;
     padding: 0;
     position: relative;
     top: 74px;
-
-    nav {
-      display: none;
-
-      div {
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-
-        a {
-          padding: 0 4px;
-          font: lighter 17px "Source Sans SemiBold";
-          color: black;
-
-          &:hover {
-            transition: 150ms;
-            color: #c7b592;
-          }
-        }
-      }
-    }
+    transition: top 330ms ease-in-out;
 
     main {
       font-size: 15px;

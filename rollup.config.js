@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import { sass } from 'svelte-preprocess-sass';
+import postcss from 'rollup-plugin-postcss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -15,7 +16,7 @@ const preprocess = sveltePreprocess({
 		import '../scss/global.scss';
         import '../scss/buttons.scss';
         import '../scss/page.scss';
-        `,
+        `
 	},
 
 	postcss: {
@@ -69,9 +70,10 @@ export default {
 				dev: !production
 			},
 			preprocess: {
-				style: sass(),
+				style: sass()
 			},
 		}),
+
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
@@ -99,7 +101,24 @@ export default {
 		// instead of npm run dev), minify
 		production && terser()
 	],
+
 	watch: {
 		clearScreen: false
-	}
+	},
+
+	client: {
+		plugins: [
+			svelte({
+				preprocess
+			}),
+		],
+	},
+
+	server: {
+		plugins: [
+			svelte({
+				preprocess,
+			}),
+		],
+	},
 };
