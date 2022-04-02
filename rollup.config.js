@@ -6,7 +6,6 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import { sass } from 'svelte-preprocess-sass';
-import postcss from 'rollup-plugin-postcss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -20,7 +19,7 @@ const preprocess = sveltePreprocess({
 	},
 
 	postcss: {
-		plugins: [require('autoprefixer')],
+		plugins: [require('autoprefixer')]
 	},
 });
 

@@ -24,3 +24,39 @@ a:visited {
   color: color.scale(#c7b592, $lightness: -35%);
 }
 
+label.mdc-text-field.smui-text-field--standard {
+  width: 90%;
+  height: 23px;
+  font: 12px "Source Sans Regular", sans-serif;
+  margin: 10px 12px;
+}
+
+.mdc-drawer__content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+
+  p {
+    font: 20px "Source Sans SemiBold";
+    margin: 12px;
+  }
+
+  input {
+    margin: 0px;
+  }
+
+  #reply {
+    flex: 2 0 80%;
+    border: 2px solid #c7b592;
+    margin: 10px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}
+
+
+
+

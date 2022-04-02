@@ -1,9 +1,8 @@
-<Drawer variant="modal" bind:open>
+<Drawer variant="modal" fixed={false} bind:open >
     <Content>
         <p>Найти</p>
         <Autocomplete
                 search={searchItems}
-
         >
             <Text
                     slot="loading"
@@ -13,19 +12,47 @@
             </Text>
 
         </Autocomplete>
-        <hr>
+        <div id="reply">
+
+        </div>
     </Content>
 </Drawer>
 <div class="stat">
     <header>
-    <button id="menu" on:click={menuClick} aria-expanded=false>
-        <img src="../arrowright.png" width="28" height="28" alt="меню" />
+    <button id="menu" on:click={menuClick} aria-expanded=false name="menu">
+        <svg width="28px" height="28px" aria-hidden="false">
+            <polyline
+                    points="8 3 20 14 8 25"
+                    stroke-width='3'
+                    stroke='black'
+                    stroke-linecap="round"
+                    fill="none"
+                    stroke-linejoin="round"
+            />
+        </svg>
     </button>
     <h3>
         СЛЕД
     </h3>
-    <button id="find" on:click={SearchClick}>
-        <img src="../search.png" width="28" height="28" alt="поиск" />
+    <button id="find" on:click={SearchClick} name="search">
+        <svg width="28px" height="28px">
+            <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    fill="none"
+                    stroke="black"
+                    stroke-width="3"
+            />
+            <line
+                    x1='14' y1="17"
+                    x2='20' y2='26'
+                    stroke-width="3"
+                    stroke="black"
+                    stroke-linecap="round"
+
+            />
+        </svg >
     </button>
 
 </header>
@@ -47,6 +74,7 @@
 
     <main>
         <table>
+            <tr></tr>
             <tr>
                 <td class="desk">
                     <h2>Вводное</h2>
@@ -89,17 +117,17 @@
             <div>
                 <div class="social vk">
                     <a href="https://vk.com/vlad_yakovlev28" target="_blank">
-                        <i class="fa fa-vk" aria-hidden="true" /></a
+                        <i class="fa fa-vk" /></a
                     >
                 </div>
                 <div class="social tg">
                     <a href="https://t.me/v_yakov" target="_blank"
-                    ><i class="fa fa-paper-plane " aria-hidden="true" /></a
+                    ><i class="fa fa-paper-plane "/></a
                     >
                 </div>
                 <div class="social pinterest">
                     <a href="https://www.pinterest.ru/vladyak99/_created" target="_blank"
-                    ><i class="fa fa-pinterest fa" aria-hidden="true" /></a
+                    ><i class="fa fa-pinterest fa"/></a
                     >
                 </div>
             </div>
@@ -117,8 +145,7 @@
 
 <script>
     import Drawer, {
-        Content,
-
+        Content
     } from '@smui/drawer';
     import Autocomplete from '@smui-extra/autocomplete';
     import { Text } from '@smui/list';
@@ -156,6 +183,7 @@
         let target = document.body.querySelector('nav');
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         let prime = document.body.querySelector('#app');
+        let vector = document.body.querySelector('svg');
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
         if(!expanded) {
@@ -163,16 +191,32 @@
             target.style.display = 'block';
             target.style.overflow = 'hidden';
             prime.style.top = '105px';
+            vector.ariaHidden = 'true';
+            vector.style.transform = 'rotate(90deg)';
+
         } else {
             target.style.overflow = 'visible';
             window.$('nav').slideToggle(330)
             prime.style.top = '74px';
+            vector.ariaHidden = 'false';
+            vector.style.transform = 'rotate(0deg)';
         }
     }
 
     function SearchClick() {
         open = open ? false : true;
+
+
+
+        window.$(document).mouseup(function (e) {
+            let container = window.$('');
+            if (container.has(e.target).length === 0){
+                container.hide();
+            }
+        });
+
         /*
+        открывать ко клику снаружи
         .show();
         .hide()
          */
@@ -180,8 +224,6 @@
 </script>
 
 <style lang="scss">
-
-
 
 div.stat {
   position: fixed;
@@ -206,9 +248,14 @@ div.stat {
       background: transparent;
       flex: 1 1 3%;
 
-      img {
+      svg {
         vertical-align: middle;
+        transition: .33s;
+        transform-origin: center center;
 
+        &:hover {
+          opacity: 0.33;
+        }
       }
     }
 
@@ -249,24 +296,31 @@ div.stat {
     position: relative;
     top: 74px;
     transition: top 330ms ease-in-out;
+    font-size: 16px;
 
     main {
-      font-size: 15px;
       text-align: center;
       padding: 0 15px;
       min-height: 29.2em;
       margin: 0;
 
-      h2 {
-        margin: 10px;
-        text-transform: uppercase;
-        font-size: 34px;
-        font-weight: 500;
-      }
+      table {
+        tr {
+          td {
+            h2 {
+              margin: 10px;
+              text-transform: uppercase;
+              font-size: 36px;
+              font-weight: 500;
+            }
 
-      p {
-        margin: 0px;
-        padding: 0px;
+            p {
+              margin: 0px;
+              padding: 0px;
+              font-size: 16px;
+            }
+          }
+        }
       }
     }
 
@@ -274,13 +328,11 @@ div.stat {
       position: static;
       flex: 0 0 auto;
       bottom: 0;
-      font-size: 15px;
       margin: 0px 10px 0px;
       color: black;
       height: 7em;
 
       div {
-
         margin: 7px;
         display: flex;
         flex-wrap: nowrap;
@@ -292,7 +344,7 @@ div.stat {
         }
 
         abbr {
-          font-size: 165%;
+          font-size: 170%;
           font-weight: bold;
         }
 
