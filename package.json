@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
+    "start": "sirv public --single",
     "prepare": "npm run smui-theme",
     "smui-theme": "smui-theme compile public/build/smui.css -i src/theme"
   },
@@ -15,6 +15,7 @@
     "@smui-extra/autocomplete": "^6.0.0-beta.14",
     "@smui/circular-progress": "^6.0.0-beta.14",
     "@smui/drawer": "^6.0.0-beta.14",
+    "@smui/image-list": "^6.0.0-beta.15",
     "@smui/list": "^6.0.0-beta.14",
     "autoprefixer": "^10.4.2",
     "node-sass": "^7.0.1",
@@ -33,9 +34,10 @@
     "svelte-preprocess-sass": "^2.0.1"
   },
   "dependencies": {
+    "flickity": "^2.3.0",
     "jquery": "^3.6.0",
     "rollup-plugin-postcss": "^4.0.2",
     "sirv-cli": "^1.0.0",
-    "svelte-router-spa": "^6.0.3"
+    "svelte-navigator": "^3.1.5"
   }
 }

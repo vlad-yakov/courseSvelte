@@ -31,6 +31,10 @@ label.mdc-text-field.smui-text-field--standard {
   margin: 10px 12px;
 }
 
+.mdc-drawer.mdc-drawer--modal.smui-drawer__absolute {
+  transition-duration: .33s;
+}
+
 .mdc-drawer__content {
   display: flex;
   flex-flow: column nowrap;
