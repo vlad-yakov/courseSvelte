@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import { sass } from 'svelte-preprocess-sass';
+import copy from 'rollup-plugin-copy'
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -13,8 +14,7 @@ const preprocess = sveltePreprocess({
 	scss: {
 		data: `
 		import '../scss/global.scss';
-        import '../scss/buttons.scss';
-        import '../scss/page.scss';
+       
         `
 	},
 
@@ -23,38 +23,7 @@ const preprocess = sveltePreprocess({
 	},
 });
 
-plugins: [
-	svelte({
-		dev: !production,
-		css: css => {
-			css.write('public/build/bundle.css');
-		},
-		preprocess: sveltePreprocess()
-	}),
-]
-
-function serve() {
-	let server;
-
-	function toExit() {
-		if (server) server.kill(0);
-	}
-
-	return {
-		writeBundle() {
-			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-				stdio: ['ignore', 'inherit', 'inherit'],
-				shell: true
-			});
-
-			process.on('SIGTERM', toExit);
-			process.on('exit', toExit);
-		}
-	};
-}
-
-export default {
+export default{
 	input: 'src/main.js',
 	output: {
 		sourcemap: true,
@@ -68,9 +37,21 @@ export default {
 				// enable run-time checks when not in production
 				dev: !production
 			},
-			preprocess: {
-				style: sass()
+
+			css: css => {
+				css.write('public/build/bundle.css');
 			},
+
+			preprocess: sveltePreprocess(),
+			style: sass()
+		}),
+
+		// путь копирования изображений и прочего
+		copy({
+			targets: [
+				{src: 'src/content/*', dest: 'public/build/img'},
+				{src: ['scripts/flickity.js', 'public/styles/flickity.css'], dest: 'public/build'}
+			]
 		}),
 
 		// we'll extract any component CSS out into
@@ -121,3 +102,26 @@ export default {
 		],
 	},
 };
+
+function serve() {
+	let server;
+
+	function toExit() {
+		if (server) server.kill(0);
+	}
+
+	return {
+		writeBundle() {
+			if (server) return;
+			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+				stdio: ['ignore', 'inherit', 'inherit'],
+				shell: true
+			});
+
+			process.on('SIGTERM', toExit);
+			process.on('exit', toExit);
+		}
+	};
+}
+
+

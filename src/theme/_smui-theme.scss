@@ -31,6 +31,10 @@ label.mdc-text-field.smui-text-field--standard {
   margin: 10px 12px;
 }
 
+.mdc-drawer.mdc-drawer--modal.smui-drawer__absolute {
+  transition-duration: .33s;
+}
+
 .mdc-drawer__content {
   display: flex;
   flex-flow: column nowrap;
@@ -56,6 +60,49 @@ label.mdc-text-field.smui-text-field--standard {
     }
   }
 }
+
+div.mdc-tab-scroller__scroll-content {
+  justify-content: center;
+
+  button.mdc-tab {
+    height: 2em;
+
+    span.mdc-tab__content {
+      height: 28px;
+
+      .mdc-tab__text-label {
+        font: lighter 17px "Source Sans SemiBold";
+        text-transform: none;
+        color: #000000;
+      }
+    }
+
+    &.mdc-tab--active {
+      height: 2em;
+
+      span.mdc-tab__ripple::before {
+        background-color: transparent;
+      }
+
+      span.mdc-tab__content {
+        height: 28px;
+
+        .mdc-tab__text-label {
+            font: lighter 17px "Source Sans SemiBold";
+            text-transform: none;
+            color: #c7b592;
+          }
+        }
+      }
+  }
+}
+
+
+
+
+
+
+
 
 
 

@@ -1,106 +1,102 @@
-<Drawer variant="modal" fixed={false} bind:open >
-    <Content>
-        <p>Найти</p>
-        <Autocomplete
-                search={searchItems}
-        >
-            <Text
-                    slot="loading"
-                    style="display: flex; width: 100%; justify-content: center; align-items: center;"
+<svelte:head>
+    <!--<link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css">
+        <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.js"></script>-->
+    </svelte:head>
+
+    <Drawer variant="modal"  bind:open  transitionDuration={1000}>
+        <Content>
+            <p>Найти</p>
+            <Autocomplete
+                    search={searchItems}
             >
-                <CircularProgress style="height: 24px; width: 24px;" indeterminate />
-            </Text>
+                <Text
+                        slot="loading"
+                        style="display: flex; width: 100%; justify-content: center; align-items: center;"
+                >
+                    <CircularProgress style="height: 24px; width: 24px;" indeterminate />
+                </Text>
 
-        </Autocomplete>
-        <div id="reply">
+            </Autocomplete>
+            <div id="reply">
 
-        </div>
-    </Content>
-</Drawer>
-<div class="stat">
-    <header>
-    <button id="menu" on:click={menuClick} aria-expanded=false name="menu">
-        <svg width="28px" height="28px" aria-hidden="false">
-            <polyline
-                    points="8 3 20 14 8 25"
-                    stroke-width='3'
-                    stroke='black'
-                    stroke-linecap="round"
-                    fill="none"
-                    stroke-linejoin="round"
-            />
-        </svg>
-    </button>
-    <h3>
-        СЛЕД
-    </h3>
-    <button id="find" on:click={SearchClick} name="search">
-        <svg width="28px" height="28px">
-            <circle
-                    cx="10"
-                    cy="10"
-                    r="8"
-                    fill="none"
-                    stroke="black"
-                    stroke-width="3"
-            />
-            <line
-                    x1='14' y1="17"
-                    x2='20' y2='26'
-                    stroke-width="3"
-                    stroke="black"
-                    stroke-linecap="round"
+            </div>
+        </Content>
+    </Drawer>
 
-            />
-        </svg >
-    </button>
+<Router>
+        <div class="stat" on:click={WindowClick}>
+            <header>
+                <button id="menu" on:click={menuClick} aria-expanded=false name="menu">
+                    <svg width="28px" height="28px" aria-hidden="false">
+                        <polyline
+                                points="8 3 20 14 8 25"
+                                stroke-width='3'
+                                stroke='black'
+                                stroke-linecap="round"
+                                fill="none"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+                <h3 on:click={SlideUp}>
+                    СЛЕД
+                </h3>
+                <button id="find" on:click={SearchClick} name="search">
+                    <svg width="28px" height="28px">
+                        <circle
+                                cx="10"
+                                cy="10"
+                                r="8"
+                                fill="none"
+                                stroke="black"
+                                stroke-width="3"
+                        />
+                        <line
+                                x1='14' y1="17"
+                                x2='20' y2='26'
+                                stroke-width="3"
+                                stroke="black"
+                                stroke-linecap="round"
 
-</header>
+                        />
+                    </svg >
+                </button>
 
+            </header>
 
-<nav>
-    <div>
-        <a href="ros.svelte">худЗал</a>
-        &#47
-        <a href="bel.svelte">литЗал</a>
-        &#47
-        <a href="ukr.svelte">фотоЗал</a>
-        &#47
-        <a href="kvz.svelte">форум</a>
+            <nav>
+                <div>
+                    <Link to="/"><p>холл</p></Link>
+                    &#47
+                    <Link to="art"><p>худЗал</p></Link>
+                    &#47
+                    <Link to="liter"><p>литЗал</p></Link>
+                    &#47
+                    <Link to="photo"><p>фотоЗал</p></Link>
+                    &#47
+                    <Link to="forum"><p>форум</p></Link>
+            </div>
+        </nav>
     </div>
-</nav>
-</div>
-<div id="app">
+
+<div id="app" on:click={WindowClick}>
 
     <main>
-        <table>
-            <tr></tr>
-            <tr>
-                <td class="desk">
-                    <h2>Вводное</h2>
-                    <p>
-                        Искусство может передавать смыслы. Это неограниченное пространство, в
-                        котором возможно делать всё как ты сам захочешь. Как этот сайт написан на
-                        каком-то языке программирования, эта статья изначально написана на русском,
-                        так и каждый творец на своём уникальном языке передаёт важный для него
-                        смысл. Это необычное представление наших мыслей, отчего и оценка смыслов
-                        приобретает более яркий оттенок.<br>
 
-                        Смыслов в СНГ очень много, в череде которых и веками нерешённые проблемы,
-                        внутренние установки которые мы называем менталитетом, чувства которые
-                        терзают многих из нас - это только часть того хаоса, происходящего в голове
-                        выходца из бывших частей соцстраны и настоящих независимых и сильных держав.<br>
+        <TransitionContainer>
+            <Route path="/" primary={false}>
+                <RouteTransition x={330} duration={900}>
+                    <Lobby/>
+                </RouteTransition>
+            </Route>
 
-                        Этот сайт для каждого может нести разные цели. Для кого-то это место чтобы
-                        проникнуться нашими национальными особенностями, некоторые здесь
-                        задумываются о чём-то более вселенском. А кто-то хочет понять как мыслят
-                        художники, какими вопросами забита их голова. Важно то, что здесь ты можешь
-                        чем-то поделиться, поэтому более не задерживаю.
+            <Route path="art" primary={false}>
+                <RouteTransition x={330} duration={900}>
+                    <Arthall/>
+                </RouteTransition>
+            </Route>
+        </TransitionContainer>
 
-                    </p>
-                </td>
-            </tr>
-        </table>
     </main>
 
     <footer>
@@ -141,9 +137,21 @@
             </p>
         </div>
     </footer>
+
 </div>
+</Router>
 
 <script>
+    import { Router, Route, Link } from "svelte-navigator";
+    import Lobby from "./lobby.svelte";
+    import Arthall from "./arthall.svelte";
+    import Lithall from "./lithall.svelte";
+    import Photohall from "./photohall.svelte";
+    import Forum from "./forum.svelte";
+
+    import RouteTransition from "./RouteTransition.svelte";
+    import TransitionContainer from "./TransitionContainer.svelte";
+
     import Drawer, {
         Content
     } from '@smui/drawer';
@@ -184,6 +192,7 @@
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         let prime = document.body.querySelector('#app');
         let vector = document.body.querySelector('svg');
+        let anchor = document.body.querySelectorAll('#anchorby, #anchorukr, #anchorrus')
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
         if(!expanded) {
@@ -193,6 +202,7 @@
             prime.style.top = '105px';
             vector.ariaHidden = 'true';
             vector.style.transform = 'rotate(90deg)';
+            anchor.forEach(an => an.style.top = '-105px');
 
         } else {
             target.style.overflow = 'visible';
@@ -200,27 +210,22 @@
             prime.style.top = '74px';
             vector.ariaHidden = 'false';
             vector.style.transform = 'rotate(0deg)';
+            anchor.forEach(an => an.style.top = '-74px');
         }
     }
 
+   function SlideUp() {
+           window.$('html, body').animate({scrollTop: 0},330);
+   }
+
     function SearchClick() {
         open = open ? false : true;
-
-
-
-        window.$(document).mouseup(function (e) {
-            let container = window.$('');
-            if (container.has(e.target).length === 0){
-                container.hide();
-            }
-        });
-
-        /*
-        открывать ко клику снаружи
-        .show();
-        .hide()
-         */
     }
+
+    function WindowClick() {
+        open = false
+    }
+
 </script>
 
 <style lang="scss">
@@ -271,25 +276,28 @@ div.stat {
   nav {
     display: none;
     background: #fff;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     div {
       padding: 5px;
       display: flex;
       justify-content: center;
 
-      a {
+      p {
         padding: 0 4px;
+        margin: 0;
         font: lighter 17px "Source Sans SemiBold";
         color: black;
 
         &:hover {
-          transition: 150ms;
+          transition: 330ms;
           color: #c7b592;
         }
       }
     }
   }
 }
+
   div#app {
     margin: 0;
     padding: 0;
@@ -299,28 +307,14 @@ div.stat {
     font-size: 16px;
 
     main {
-      text-align: center;
+      text-align: left;
       padding: 0 15px;
-      min-height: 29.2em;
+      min-height: 559px;
       margin: 0;
+      overflow: auto;
 
-      table {
-        tr {
-          td {
-            h2 {
-              margin: 10px;
-              text-transform: uppercase;
-              font-size: 36px;
-              font-weight: 500;
-            }
-
-            p {
-              margin: 0px;
-              padding: 0px;
-              font-size: 16px;
-            }
-          }
-        }
+      &::-webkit-scrollbar {
+        width: 0;
       }
     }
 
@@ -331,6 +325,7 @@ div.stat {
       margin: 0px 10px 0px;
       color: black;
       height: 7em;
+      background: white;
 
       div {
         margin: 7px;
@@ -401,9 +396,4 @@ div.stat {
     }
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
