@@ -1,75 +1,80 @@
-<Drawer variant="modal" fixed={false} bind:open  transitionDuration={1000}>
-    <Content>
-        <p>Найти</p>
-        <Autocomplete
-                search={searchItems}
-        >
-            <Text
-                    slot="loading"
-                    style="display: flex; width: 100%; justify-content: center; align-items: center;"
+<svelte:head>
+    <!--<link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css">
+        <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.js"></script>-->
+    </svelte:head>
+
+    <Drawer variant="modal"  bind:open  transitionDuration={1000}>
+        <Content>
+            <p>Найти</p>
+            <Autocomplete
+                    search={searchItems}
             >
-                <CircularProgress style="height: 24px; width: 24px;" indeterminate />
-            </Text>
+                <Text
+                        slot="loading"
+                        style="display: flex; width: 100%; justify-content: center; align-items: center;"
+                >
+                    <CircularProgress style="height: 24px; width: 24px;" indeterminate />
+                </Text>
 
-        </Autocomplete>
-        <div id="reply">
+            </Autocomplete>
+            <div id="reply">
 
-        </div>
-    </Content>
-</Drawer>
+            </div>
+        </Content>
+    </Drawer>
 
 <Router>
-    <div class="stat" on:click={WindowClick}>
-        <header>
-            <button id="menu" on:click={menuClick} aria-expanded=false name="menu">
-                <svg width="28px" height="28px" aria-hidden="false">
-                    <polyline
-                            points="8 3 20 14 8 25"
-                            stroke-width='3'
-                            stroke='black'
-                            stroke-linecap="round"
-                            fill="none"
-                            stroke-linejoin="round"
-                    />
-                </svg>
-            </button>
-            <h3 on:click={SlideUp}>
-                СЛЕД
-            </h3>
-            <button id="find" on:click={SearchClick} name="search">
-                <svg width="28px" height="28px">
-                    <circle
-                            cx="10"
-                            cy="10"
-                            r="8"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="3"
-                    />
-                    <line
-                            x1='14' y1="17"
-                            x2='20' y2='26'
-                            stroke-width="3"
-                            stroke="black"
-                            stroke-linecap="round"
+        <div class="stat" on:click={WindowClick}>
+            <header>
+                <button id="menu" on:click={menuClick} aria-expanded=false name="menu">
+                    <svg width="28px" height="28px" aria-hidden="false">
+                        <polyline
+                                points="8 3 20 14 8 25"
+                                stroke-width='3'
+                                stroke='black'
+                                stroke-linecap="round"
+                                fill="none"
+                                stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+                <h3 on:click={SlideUp}>
+                    СЛЕД
+                </h3>
+                <button id="find" on:click={SearchClick} name="search">
+                    <svg width="28px" height="28px">
+                        <circle
+                                cx="10"
+                                cy="10"
+                                r="8"
+                                fill="none"
+                                stroke="black"
+                                stroke-width="3"
+                        />
+                        <line
+                                x1='14' y1="17"
+                                x2='20' y2='26'
+                                stroke-width="3"
+                                stroke="black"
+                                stroke-linecap="round"
 
-                    />
-                </svg >
-            </button>
+                        />
+                    </svg >
+                </button>
 
-        </header>
+            </header>
 
-        <nav>
-            <div>
-                <Link to="/"><p>холл</p></Link>
-                &#47
-                <Link to="art"><p>худЗал</p></Link>
-                &#47
-                <Link to="liter"><p>литЗал</p></Link>
-                &#47
-                <Link to="photo"><p>фотоЗал</p></Link>
-                &#47
-                <Link to="forum"><p>форум</p></Link>
+            <nav>
+                <div>
+                    <Link to="/"><p>холл</p></Link>
+                    &#47
+                    <Link to="art"><p>худЗал</p></Link>
+                    &#47
+                    <Link to="liter"><p>литЗал</p></Link>
+                    &#47
+                    <Link to="photo"><p>фотоЗал</p></Link>
+                    &#47
+                    <Link to="forum"><p>форум</p></Link>
             </div>
         </nav>
     </div>
@@ -77,13 +82,20 @@
 <div id="app" on:click={WindowClick}>
 
     <main>
-            <TransitionContainer>
-                <Route path="/">
-                    <RouteTransition x={330} duration={900}>
-                        <Lobby/>
-                    </RouteTransition>
-                </Route>
-            </TransitionContainer>
+
+        <TransitionContainer>
+            <Route path="/" primary={false}>
+                <RouteTransition x={330} duration={900}>
+                    <Lobby/>
+                </RouteTransition>
+            </Route>
+
+            <Route path="art" primary={false}>
+                <RouteTransition x={330} duration={900}>
+                    <Arthall/>
+                </RouteTransition>
+            </Route>
+        </TransitionContainer>
 
     </main>
 
@@ -125,6 +137,7 @@
             </p>
         </div>
     </footer>
+
 </div>
 </Router>
 
@@ -179,6 +192,7 @@
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         let prime = document.body.querySelector('#app');
         let vector = document.body.querySelector('svg');
+        let anchor = document.body.querySelectorAll('#anchorby, #anchorukr, #anchorrus')
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
         if(!expanded) {
@@ -188,6 +202,7 @@
             prime.style.top = '105px';
             vector.ariaHidden = 'true';
             vector.style.transform = 'rotate(90deg)';
+            anchor.forEach(an => an.style.top = '-105px');
 
         } else {
             target.style.overflow = 'visible';
@@ -195,14 +210,13 @@
             prime.style.top = '74px';
             vector.ariaHidden = 'false';
             vector.style.transform = 'rotate(0deg)';
+            anchor.forEach(an => an.style.top = '-74px');
         }
     }
 
    function SlideUp() {
            window.$('html, body').animate({scrollTop: 0},330);
    }
-
-
 
     function SearchClick() {
         open = open ? false : true;
@@ -283,6 +297,7 @@ div.stat {
     }
   }
 }
+
   div#app {
     margin: 0;
     padding: 0;
@@ -292,16 +307,15 @@ div.stat {
     font-size: 16px;
 
     main {
-      text-align: center;
+      text-align: left;
       padding: 0 15px;
-      min-height: 29.2em;
+      min-height: 559px;
       margin: 0;
       overflow: auto;
 
       &::-webkit-scrollbar {
         width: 0;
       }
-
     }
 
     footer {
@@ -382,9 +396,4 @@ div.stat {
     }
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
