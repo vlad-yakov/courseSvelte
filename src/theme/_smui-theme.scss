@@ -24,6 +24,40 @@ a:visited {
   color: color.scale(#c7b592, $lightness: -35%);
 }
 
+div.mdc-dialog__surface {
+  max-width: 1414px !important;
+}
+
+.mdc-dialog__content#fullscreen-content {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 560px;
+
+  button {
+    &:focus {
+      border-color: transparent;
+
+      &.mdc-button.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused.mdc-ripple-upgraded--foreground-activation {
+        background: transparent;
+      }
+
+      &.mdc-button.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused.mdc-ripple-upgraded--foreground-activation {
+        background: transparent;
+      }
+    }
+
+
+    div.mdc-button__ripple {
+      opacity: 0;
+
+    }
+    span.mdc-button__label {
+      color: black;
+      text-transform: none;
+    }
+  }
+}
+
 label.mdc-text-field.smui-text-field--standard {
   width: 90%;
   height: 23px;

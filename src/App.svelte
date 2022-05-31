@@ -1,8 +1,3 @@
-<svelte:head>
-    <!--<link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css">
-        <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.js"></script>-->
-    </svelte:head>
-
     <Drawer variant="modal"  bind:open  transitionDuration={1000}>
         <Content>
             <p>Найти</p>
@@ -61,7 +56,6 @@
                         />
                     </svg >
                 </button>
-
             </header>
 
             <nav>
@@ -73,8 +67,6 @@
                     <Link to="liter"><p>литЗал</p></Link>
                     &#47
                     <Link to="photo"><p>фотоЗал</p></Link>
-                    &#47
-                    <Link to="forum"><p>форум</p></Link>
             </div>
         </nav>
     </div>
