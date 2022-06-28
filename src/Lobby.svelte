@@ -4,12 +4,9 @@
 </svelte:head>
 
 <Dialog
-        bind:open
-
->
+        bind:open>
     <Content id="fullscreen-content">
-       <Button
-       ><Label>{i_alt}</Label></Button>
+       <Button><Label>{i_alt}</Label></Button>
     </Content>
 
 </Dialog>
@@ -112,18 +109,12 @@
 
     export var i_alt = "";
 
-    import { useParams } from "svelte-navigator";
-
-    const params = useParams();
-
-    $: console.log($params); // -> { id: "123", splat: "pauls-profile" }
-
     window.$(function(){
-        window.$('.minimized').click(function(event) {
+        window.$('.minimized').mousedown(function(event) {
             open = true
-            var i_path = window.$(this).attr('src');
+            let i_path = window.$(this).attr('src');
             i_alt = window.$(this).attr('alt');
-            window.$('#fullscreen-content').prepend('<div id="pict"><img src="'+i_path+'""></div>');
+            window.$('#fullscreen-content').prepend('<div id="pict"><img src="'+i_path+'" style="max-width:1332px;max-height:620px;"></div>');
         });
         window.$('.mdc-dialog__scrim').click(function() {
             window.$('#pict').remove();
@@ -132,21 +123,10 @@
 </script>
 
 <style lang="scss">
-
-
   .tbody {
-
     p {
       text-indent: 15px;
       margin: 16px 0;
-    }
-
-    h2 {
-      outline: none;
-      margin: 10px;
-      text-transform: uppercase;
-      font-size: 36px;
-      font-weight: 500;
     }
 
     .main-gallery {
@@ -187,8 +167,8 @@
       position:relative;
 
       div#anchorby, div#anchorukr, div#anchorrus {
-        position:absolute;
-        top:-74px;
+        position: relative;
+        top: var(--indent-anchor);
       }
 
       h3 {

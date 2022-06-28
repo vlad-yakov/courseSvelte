@@ -66,7 +66,7 @@
                     &#47
                     <Link to="liter"><p>литЗал</p></Link>
                     &#47
-                    <Link to="photo"><p>фотоЗал</p></Link>
+                    <Link to="ph"><p>фотоЗал</p></Link>
             </div>
         </nav>
     </div>
@@ -85,6 +85,12 @@
             <Route path="art" primary={false}>
                 <RouteTransition x={330} duration={900}>
                     <Arthall/>
+                </RouteTransition>
+            </Route>
+
+            <Route path="ph" primary={false}>
+                <RouteTransition x={330} duration={900}>
+                    <Photohall/>
                 </RouteTransition>
             </Route>
         </TransitionContainer>
@@ -135,11 +141,10 @@
 
 <script>
     import { Router, Route, Link } from "svelte-navigator";
-    import Lobby from "./lobby.svelte";
+    import Lobby from "./Lobby.svelte";
     import Arthall from "./arthall.svelte";
     import Lithall from "./lithall.svelte";
     import Photohall from "./photohall.svelte";
-    import Forum from "./forum.svelte";
 
     import RouteTransition from "./RouteTransition.svelte";
     import TransitionContainer from "./TransitionContainer.svelte";
@@ -184,7 +189,8 @@
         let expanded = (btn.getAttribute(`aria-expanded`) === "true" || false);
         let prime = document.body.querySelector('#app');
         let vector = document.body.querySelector('svg');
-        let anchor = document.body.querySelectorAll('#anchorby, #anchorukr, #anchorrus')
+        let anchor = document.body.querySelectorAll('#anchorby, #anchorukr, #anchorrus');
+        let styleAnchor = document.styleSheets[3].cssRules[1].style;
         //инвертируем значение по клику
         btn.setAttribute(`aria-expanded`, !expanded);
         if(!expanded) {
@@ -194,7 +200,7 @@
             prime.style.top = '105px';
             vector.ariaHidden = 'true';
             vector.style.transform = 'rotate(90deg)';
-            anchor.forEach(an => an.style.top = '-105px');
+            styleAnchor.setProperty('--indent-anchor', '-105px');
 
         } else {
             target.style.overflow = 'visible';
@@ -202,7 +208,7 @@
             prime.style.top = '74px';
             vector.ariaHidden = 'false';
             vector.style.transform = 'rotate(0deg)';
-            anchor.forEach(an => an.style.top = '-74px');
+            styleAnchor.setProperty('--indent-anchor', '-74px');
         }
     }
 

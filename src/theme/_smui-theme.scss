@@ -40,12 +40,7 @@ div.mdc-dialog__surface {
       &.mdc-button.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused.mdc-ripple-upgraded--foreground-activation {
         background: transparent;
       }
-
-      &.mdc-button.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused.mdc-ripple-upgraded--foreground-activation {
-        background: transparent;
-      }
     }
-
 
     div.mdc-button__ripple {
       opacity: 0;
@@ -56,6 +51,33 @@ div.mdc-dialog__surface {
       text-transform: none;
     }
   }
+}
+
+div.card-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+
+  div.card-container.mdc-ripple-surface {
+    margin: 5px;
+  }
+
+  .smui-ripple-surface--primary::before {
+    background-color: transparent;
+  }
+
+  div.mdc-card.mdc-card--outlined {
+    padding: 5px;
+  }
+}
+
+div.smui-accordion .smui-accordion__panel.smui-accordion__panel--open>.smui-paper__content {
+  padding: 0;
+}
+
+.mdc-ripple-surface.mdc-ripple-upgraded--background-focused::after, .mdc-ripple-surface.mdc-ripple-upgraded--background-focused::before {
+  background-color: transparent;
 }
 
 label.mdc-text-field.smui-text-field--standard {
